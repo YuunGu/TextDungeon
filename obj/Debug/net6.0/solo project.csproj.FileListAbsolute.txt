@@ -1,0 +1,14 @@
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\bin\Debug\net6.0\solo project.exe
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\bin\Debug\net6.0\solo project.deps.json
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\bin\Debug\net6.0\solo project.runtimeconfig.json
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\bin\Debug\net6.0\solo project.dll
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\bin\Debug\net6.0\solo project.pdb
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\solo project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\solo project.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\solo project.AssemblyInfo.cs
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\solo project.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\solo project.dll
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\refint\solo project.dll
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\solo project.pdb
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\solo project.genruntimeconfig.cache
+C:\Users\User\Desktop\TeamSparta\ConsoleApp1\solo project\obj\Debug\net6.0\ref\solo project.dll
