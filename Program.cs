@@ -1,4 +1,6 @@
-﻿namespace solo_project
+﻿using System.ComponentModel;
+
+namespace solo_project
 {
 
 
@@ -16,20 +18,23 @@
 
             List<int> equi = new List<int>();
 
-            string[] weapon = { "낡은 검" , "청동 도끼" , "스파르타의 창" };
-            string[] armor = { "수련자 갑옷"  , "무쇠 갑옷"  , "스파르타 갑옷" };
+            string[] weapon = { "낡은 검" , "청동 도끼" , "스파르타의 창" , "최종 창" };
+            string[] armor = { "수련자 갑옷"  , "무쇠 갑옷"  , "스파르타 갑옷" , "최종 갑옷" , "마왕의갑옷"};
 
-            string[] weaponInfo = 
-                { 
+            string[] weaponInfo =
+                {
                     "쉽게 볼수 있는 낡은 검 입니다." ,
                     "어디선가 사용됐던것 같은 도끼입니다." ,
-                    "스파르타의 전사들이 사용했다는 전설의 창입니다."
+                    "스파르타의 전사들이 사용했다는 전설의 창입니다.",
+                    "엔딩에서나 어울리는 최고의 창입니다"
                 };
             string[] armorInfo = 
                 { 
                     "수련에 도움을 주는 갑옷입니다." ,
                     "무쇠로 만들어져 튼튼한 갑옷입니다." ,
-                    "스파르타의 전사들이 사용했다는 전설의 갑옷입니다."
+                    "스파르타의 전사들이 사용했다는 전설의 갑옷입니다.",
+                    "엔딩에서나 어울리는 최고의 갑옷 입니다",
+                    "마왕이 착용했다는 전설의 갑옷 입니다."
                 };
 
 
@@ -37,14 +42,17 @@
 
 
 
-            int[] weaponAtk = { 2, 5, 7 };
-            int[] armorDef = { 5, 9, 15 };
+            int[] weaponAtk = { 2, 5, 7, 30};
+            int[] armorDef = { 5, 9, 15, 45 , 60};
 
-            int[] weaponGold = {600,1500,2700};
-            int[] armorGold = {1000,1800,3500 };
+            int[] weaponGold = {600,1500,2700,10000};
+            int[] armorGold = {1000,1800,3500,10000,15000};
 
-            int[] weaponHand = { 0, 0, 0 };
-            int[] armorHand = { 0, 0, 0 };
+            int[] weaponHand = { 0, 0, 0, 0};
+            int[] armorHand = { 0, 0, 0, 0, 0};
+
+            int[] weaponEqui = { 0, 0, 0, 0};
+            int[] armorEqui = { 0, 0, 0, 0, 0};
 
             while (true)
             {
@@ -111,7 +119,7 @@
                                         }
                                         
                                     }
-                                    for (int i = 0; i < weapon.Length; i++)
+                        for (int i = 0; i < weapon.Length; i++)
                                     {
                                         if (weaponHand[i] == 1)
                                         {
@@ -135,6 +143,13 @@
                         {
                             while (true)
                             {
+                                int equiNum = 1;
+                                int armorEN = 0;
+                                int weaponEN = 0;
+
+                                Queue<int> armorIndex = new Queue<int>();
+                                Queue<int> weaponIndex = new Queue<int>();
+
                                 Console.Clear();
                                 Console.WriteLine("인벤토리 - 장착관리");
                                 Console.WriteLine();
@@ -142,21 +157,58 @@
                                 Console.WriteLine();
                                 Console.WriteLine($"[아이템 목록]");
                                 Console.WriteLine();
+                                for (int i = 0; i < armor.Length; i++)
+                                {
+                                    
+                                    if (armorHand[i] == 1)
+                                    {
+                                        Console.WriteLine($"-{equiNum} {armor[i]} | 방어력 +{armorDef[i]} | {armorInfo[i]} ");
+                                        equiNum++;
+                                        armorIndex.Enqueue(armorEN);
+                                        armorEN++;
+                                    }
 
+                                }
+                                for (int i = 0; i < weapon.Length; i++)
+                                {
+                                    if (weaponHand[i] == 1)
+                                    {
+                                        Console.WriteLine($"-{equiNum} {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]}");
+                                        equiNum++;
+                                        weaponIndex.Enqueue(weaponEN);
+                                        weaponEN++;
+                                    }
+
+                                }
                                 Console.WriteLine();
                                 Console.WriteLine("0. 나가기");
+                                Console.WriteLine("원하는 아이템의 번호 장착");
                                 Console.WriteLine();
                                 Console.WriteLine("원하시는 행동을 입력해주세요");
                                 Console.Write(">>");
-                                String equipment = Console.ReadLine();
+                                int equipment = int.Parse(Console.ReadLine());
 
-                                if (equipment == "0")
+                                if (equipment == 0)
                                 {
                                     break;
+                                }
+                                else if (equipment > 0 && equipment < armor.Length + 1 )
+                                {
+                                    int armorNum = equipment;
+
+
+                                    armorEqui[armorNum] = 1;
+                                }
+                                else if (equipment > armor.Length + 1 && equipment < weapon.Length+armor.Length + 1)
+                                {
+                                    int weaponNum = equipment;
+
+                                    armorEqui[weaponNum] = 1;
                                 }
                                 else
                                 {
                                     Console.WriteLine("잘못된 입력.");
+                                    continue;
                                 }
                             }
                         }
@@ -197,11 +249,11 @@
                             {
                                 if (weaponHand[i] == 0)
                                 {
-                                    Console.WriteLine($"{i + 4}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | {weaponGold[i]} G");
+                                    Console.WriteLine($"{i + armor.Length + 1}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | {weaponGold[i]} G");
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"{i + 4}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | 구매완료");
+                                    Console.WriteLine($"{i + armor.Length + 1}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | 구매완료");
                                 }
                             }
                             Console.WriteLine();
@@ -241,11 +293,11 @@
                                     {
                                         if (weaponHand[i] == 0)
                                         {
-                                            Console.WriteLine($"{i + 4}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | {weaponGold[i]} G");
+                                            Console.WriteLine($"{i + armor.Length + 1}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | {weaponGold[i]} G");
                                         }
                                         else 
                                         {
-                                            Console.WriteLine($"{i + 4}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | 구매완료");
+                                            Console.WriteLine($"{i + armor.Length + 1}- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]} | 구매완료");
                                         }
                                     }
                                     Console.WriteLine();
@@ -261,11 +313,11 @@
                                     {
                                         break ;
                                     }
-                                    else if (sell <= 3)
+                                    else if (sell > 0 && sell < armor.Length + 1)
                                     {
                                         int armorNum = sell - 1;
                                         if (armorHand[armorNum] == 0) {
-                                            if (armorGold[armorNum] < gold)
+                                            if (armorGold[armorNum] <= gold)
                                             {
                                                 Console.WriteLine("구매완료");
                                                 gold = gold - armorGold[armorNum];
@@ -327,12 +379,12 @@
                                                 break;
                                             }
                                         }
-                                    }
-                                    else if (sell >= 4 && sell < 7) // 무기 구매
+                                    }//아머 구매
+                                    else if (sell > armor.Length  && sell < weapon.Length + armor.Length + 1) // 무기 구매
                                     {
-                                        int weaponNum = sell - 4;
+                                        int weaponNum = sell - (armor.Length+1);
 
-                                        if (weaponGold[weaponNum] < gold)
+                                        if (weaponGold[weaponNum] <= gold)
                                         {
                                             if (weaponHand[weaponNum] == 0) 
                                             {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\solo project.csproj": {}
+    "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\TextDungeon\\solo project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\solo project.csproj": {
+    "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\TextDungeon\\solo project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\solo project.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\TextDungeon\\solo project.csproj",
         "projectName": "solo project",
-        "projectPath": "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\solo project.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\TextDungeon\\solo project.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\TeamSparta\\ConsoleApp1\\solo project\\TextDungeon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
