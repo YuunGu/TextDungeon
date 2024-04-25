@@ -169,9 +169,7 @@ namespace solo_project
                         {
                             while (true)
                             {
-                                int equiNum = 1;
-                                int armorEN = 0;
-                                int weaponEN = 0;
+
 
                                 List<string> armorIndex = new List<string>();
                                 List<string> weaponIndex = new List<string>();
