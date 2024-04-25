@@ -217,38 +217,41 @@ namespace solo_project
                                     else if (equArmor == 1)
                                     {
                                         string unEqui = "[E] ";
-                                        for (int i = 0; i <= equiDef.Count; i++)
+                                        for (int i = 0; i < equiDef.Count; i++)
                                         {
-                                            if (equiDefName[i + 1].StartsWith(unEqui))
+                                            if (equiDefName[i].Contains(unEqui))
                                             {
-                                                equiDefName[i] = equiDefName[i].Substring(unEqui.Length);
+                                                equiDefName[i] = equiDefName[i].Replace(unEqui, "");
                                                 equArmor = 0;
                                                 equStatArmor -= equiDef[armorNum-1];
+                                                break;
                                             }
                                         }
                                     }
 
+
                                 }
-                                else if (equipment > equiDef.Count  && equipment < equiAtk.Count+equiDef.Count)
+                                else if (equipment > equiDef.Count  && equipment <= equiAtk.Count+equiDef.Count)
                                 {
                                     int weaponNum = equipment - equiDef.Count;
                                     if (equWeapon == 0)
                                     {
-                                        equiAtkName[weaponNum-1] = "[E] " + equiAtkName[weaponNum];
+                                        equiAtkName[weaponNum-1] = "[E] " + equiAtkName[weaponNum-1];
                                         equWeapon = 1;
-                                        equStatWeapon += equiAtk[weaponNum];
+                                        equStatWeapon += equiAtk[weaponNum-1];
                                         continue;
                                     }
                                     else if (equWeapon == 1)
                                     {
                                         string unEqui = "[E] ";
-                                        for(int i = 0; i<= equiAtk.Count; i++)
+                                        for (int i = 0; i < equiAtk.Count; i++)
                                         {
-                                            if (equiAtkName[i].StartsWith(unEqui))
+                                            if (equiAtkName[i].Contains(unEqui))
                                             {
-                                                equiAtkName[i] = equiAtkName[i].Substring(unEqui.Length);
+                                                equiAtkName[i] = equiAtkName[i].Replace(unEqui, "");
                                                 equWeapon = 0;
-                                                equStatWeapon -= equiAtk[weaponNum];
+                                                equStatWeapon -= equiAtk[weaponNum-1];
+                                                break;
                                             }
                                         }
                                     }
