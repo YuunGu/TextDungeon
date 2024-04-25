@@ -1,22 +1,48 @@
 ﻿using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace solo_project
 {
+    public class Players
+    {
+        public string Name { get; set; }
+        public int Lv { get; set; }
+        public string Jobs { get; set; }
 
+        public int Atk { get; set; }
+        public int Def { get; set; }
+        public int Hp { get; set; }
+
+        public int Gold { get; set; }
+        public Players(string name , int lv , string jobs , int atk , int def , int hp , int gold) 
+        {
+            Name = name;
+            Lv = lv;
+            Jobs = jobs;
+            Atk = atk;
+            Def = def;
+            Hp = hp;
+            Gold = gold;
+
+        }
+        
+    }
 
     class Program        
     {
         
         static void Main(string[] args)
         {
-            int lv = 01;
-            string jobs = "전사";
-            int atk = 10;
-            int def = 5;
-            int hp = 10;
-            int gold = 15000;
+            Players players = new Players("Yuun",01,"전사",10,5,100,150000);
 
-            List<int> equi = new List<int>();
+            List<string> equiDefName = new List<string>();
+            List<string> equiAtkName = new List<string>();
+            List<int> equiAtk = new List<int>();
+            List<int> equiDef = new List<int>();
+            List<string> equiAtkInfo = new List<string>();
+            List<string> equiDefInfo = new List<string>();
 
             string[] weapon = { "낡은 검" , "청동 도끼" , "스파르타의 창" , "최종 창" };
             string[] armor = { "수련자 갑옷"  , "무쇠 갑옷"  , "스파르타 갑옷" , "최종 갑옷" , "마왕의갑옷"};
@@ -54,6 +80,12 @@ namespace solo_project
             int[] weaponEqui = { 0, 0, 0, 0};
             int[] armorEqui = { 0, 0, 0, 0, 0};
 
+            int equArmor = 0;
+            int equWeapon = 0;
+
+            int equStatWeapon = 0;
+            int equStatArmor = 0;
+
             while (true)
             {
 
@@ -78,12 +110,12 @@ namespace solo_project
                         Console.WriteLine();
                         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
                         Console.WriteLine();
-                        Console.WriteLine($"Lv. {lv}");
-                        Console.WriteLine($"직업 :  ( {jobs} )");
-                        Console.WriteLine($"공격력 : {atk}");
-                        Console.WriteLine($"방어력 : {def}");
-                        Console.WriteLine($"체  력 : {hp}");
-                        Console.WriteLine($"골  드 : {gold}");
+                        Console.WriteLine($"Lv. {players.Lv}");
+                        Console.WriteLine($"직업 :  {players.Jobs}");
+                        Console.WriteLine($"공격력 : {players.Atk + equStatWeapon} , +({equStatWeapon})");
+                        Console.WriteLine($"방어력 : {players.Def + equStatArmor} , +({equStatArmor})");
+                        Console.WriteLine($"체  력 : {players.Hp}");
+                        Console.WriteLine($"골  드 : {players.Gold}");
                         Console.WriteLine();
                         Console.WriteLine("0. 나가기");
                         Console.WriteLine();
@@ -111,22 +143,16 @@ namespace solo_project
                         Console.WriteLine("보유중인 아이템을 관리할 수 있습니다.");
                         Console.WriteLine();
                         Console.WriteLine($"[아이템 목록]");
-                        for (int i = 0; i < armor.Length; i++)
-                                    {
-                                        if (armorHand[i] == 1)
-                                        {
-                                            Console.WriteLine($"- {armor[i]} | 방어력 +{armorDef[i]} | {armorInfo[i]} ");
-                                        }
-                                        
-                                    }
-                        for (int i = 0; i < weapon.Length; i++)
-                                    {
-                                        if (weaponHand[i] == 1)
-                                        {
-                                            Console.WriteLine($"- {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]}");
-                                        }
-                                        
-                                    }
+
+                        for(int i = 0; i < equiDef.Count; i++)
+                        {
+                            Console.WriteLine($"-{i} {equiDefName[i]} | 방어력 +{equiDef[i]} | {equiDefInfo[i]}");
+                        }
+                        for (int i = 0; i < equiAtk.Count; i++)
+                        {
+                            Console.WriteLine($"-{i+equiDef.Count} {equiAtkName[i]} | 방어력 +{equiAtk[i]} | {equiAtkInfo[i]}");
+                        }
+
                         Console.WriteLine();
                         Console.WriteLine();
                         Console.WriteLine("1. 장착 관리");
@@ -147,8 +173,8 @@ namespace solo_project
                                 int armorEN = 0;
                                 int weaponEN = 0;
 
-                                Queue<int> armorIndex = new Queue<int>();
-                                Queue<int> weaponIndex = new Queue<int>();
+                                List<string> armorIndex = new List<string>();
+                                List<string> weaponIndex = new List<string>();
 
                                 Console.Clear();
                                 Console.WriteLine("인벤토리 - 장착관리");
@@ -157,28 +183,13 @@ namespace solo_project
                                 Console.WriteLine();
                                 Console.WriteLine($"[아이템 목록]");
                                 Console.WriteLine();
-                                for (int i = 0; i < armor.Length; i++)
+                                for (int i = 0; i < equiDef.Count; i++)
                                 {
-                                    
-                                    if (armorHand[i] == 1)
-                                    {
-                                        Console.WriteLine($"-{equiNum} {armor[i]} | 방어력 +{armorDef[i]} | {armorInfo[i]} ");
-                                        equiNum++;
-                                        armorIndex.Enqueue(armorEN);
-                                        armorEN++;
-                                    }
-
+                                    Console.WriteLine($"-{i + 1} {equiDefName[i]} | 방어력 +{equiDef[i]} | {equiDefInfo[i]}");
                                 }
-                                for (int i = 0; i < weapon.Length; i++)
+                                for (int i = 0; i < equiAtk.Count; i++)
                                 {
-                                    if (weaponHand[i] == 1)
-                                    {
-                                        Console.WriteLine($"-{equiNum} {weapon[i]} | 공격력 +{weaponAtk[i]} | {weaponInfo[i]}");
-                                        equiNum++;
-                                        weaponIndex.Enqueue(weaponEN);
-                                        weaponEN++;
-                                    }
-
+                                    Console.WriteLine($"-{i + equiDef.Count + 1} {equiAtkName[i]} | 공격력 +{equiAtk[i]} | {equiAtkInfo[i]}");
                                 }
                                 Console.WriteLine();
                                 Console.WriteLine("0. 나가기");
@@ -192,18 +203,56 @@ namespace solo_project
                                 {
                                     break;
                                 }
-                                else if (equipment > 0 && equipment < armor.Length + 1 )
+                                else if (equipment > 0 && equipment <= equiDef.Count )
                                 {
                                     int armorNum = equipment;
+                                    if(equArmor == 0)
+                                    {
+                                        if (armorNum == 1) { equiDefName[armorNum - 1] = "[E] " + equiDefName[armorNum - 1]; }
+                                        else { equiDefName[armorNum - 1] = "[E] " + equiDefName[armorNum - 1]; }
+                                        equArmor = 1;
+                                        equStatArmor += equiDef[armorNum - 1];
+                                        continue;
+                                    }
+                                    else if (equArmor == 1)
+                                    {
+                                        string unEqui = "[E] ";
+                                        for (int i = 0; i <= equiDef.Count; i++)
+                                        {
+                                            if (equiDefName[i + 1].StartsWith(unEqui))
+                                            {
+                                                equiDefName[i] = equiDefName[i].Substring(unEqui.Length);
+                                                equArmor = 0;
+                                                equStatArmor -= equiDef[armorNum-1];
+                                            }
+                                        }
+                                    }
 
-
-                                    armorEqui[armorNum] = 1;
                                 }
-                                else if (equipment > armor.Length + 1 && equipment < weapon.Length+armor.Length + 1)
+                                else if (equipment > equiDef.Count  && equipment < equiAtk.Count+equiDef.Count)
                                 {
-                                    int weaponNum = equipment;
+                                    int weaponNum = equipment - equiDef.Count;
+                                    if (equWeapon == 0)
+                                    {
+                                        equiAtkName[weaponNum-1] = "[E] " + equiAtkName[weaponNum];
+                                        equWeapon = 1;
+                                        equStatWeapon += equiAtk[weaponNum];
+                                        continue;
+                                    }
+                                    else if (equWeapon == 1)
+                                    {
+                                        string unEqui = "[E] ";
+                                        for(int i = 0; i<= equiAtk.Count; i++)
+                                        {
+                                            if (equiAtkName[i].StartsWith(unEqui))
+                                            {
+                                                equiAtkName[i] = equiAtkName[i].Substring(unEqui.Length);
+                                                equWeapon = 0;
+                                                equStatWeapon -= equiAtk[weaponNum];
+                                            }
+                                        }
+                                    }
 
-                                    armorEqui[weaponNum] = 1;
                                 }
                                 else
                                 {
@@ -230,7 +279,7 @@ namespace solo_project
                             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
                             Console.WriteLine();
                             Console.WriteLine($"[보유 골드]");
-                            Console.WriteLine($"{gold} G");
+                            Console.WriteLine($"{players.Gold} G");
                             Console.WriteLine();
                             Console.WriteLine($"[아이템 목록]");
                             Console.WriteLine();
@@ -276,7 +325,7 @@ namespace solo_project
                                     Console.WriteLine($"[아이템 목록]");
                                     Console.WriteLine();
                                     Console.WriteLine($"[보유 골드]");
-                                    Console.WriteLine($"{gold} G");
+                                    Console.WriteLine($"{players.Gold} G");
                                     Console.WriteLine();
                                     for (int i = 0; i < armor.Length; i++)
                                     {
@@ -317,10 +366,13 @@ namespace solo_project
                                     {
                                         int armorNum = sell - 1;
                                         if (armorHand[armorNum] == 0) {
-                                            if (armorGold[armorNum] <= gold)
+                                            if (armorGold[armorNum] <= players.Gold)
                                             {
                                                 Console.WriteLine("구매완료");
-                                                gold = gold - armorGold[armorNum];
+                                                players.Gold = players.Gold - armorGold[armorNum];
+                                                equiDefName.Add(armor[armorNum]);
+                                                equiDef.Add(armorDef[armorNum]);
+                                                equiDefInfo.Add(armorInfo[armorNum]);
                                                 armorHand[armorNum] = 1;
                                                 Console.WriteLine();
                                                 Console.WriteLine("0. 다른물건구매");
@@ -360,7 +412,7 @@ namespace solo_project
                                                 }
                                             }
                                         }
-                                        else if (armorGold[armorNum] > gold)
+                                        else if (armorGold[armorNum] > players.Gold)
                                         {
                                             Console.WriteLine("돈이 부족합니다");
                                             Console.WriteLine();
@@ -380,17 +432,20 @@ namespace solo_project
                                             }
                                         }
                                     }//아머 구매
-                                    else if (sell > armor.Length  && sell < weapon.Length + armor.Length + 1) // 무기 구매
+                                    else if (sell > armor.Length  && sell <= weapon.Length + armor.Length + 1)// 무기 구매 
                                     {
                                         int weaponNum = sell - (armor.Length+1);
 
-                                        if (weaponGold[weaponNum] <= gold)
+                                        if (weaponGold[weaponNum] <= players.Gold)
                                         {
                                             if (weaponHand[weaponNum] == 0) 
                                             {
                                                 Console.WriteLine("구매완료");
-                                                gold = gold - weaponGold[weaponNum];
+                                                players.Gold = players.Gold - weaponGold[weaponNum];
                                                 weaponHand[weaponNum]++;
+                                                equiAtkName.Add(weapon[weaponNum]);
+                                                equiAtk.Add(weaponAtk[weaponNum]);
+                                                equiAtkInfo.Add(weaponInfo[weaponNum]);
                                                 Console.WriteLine();
                                                 Console.WriteLine("0. 다른물건구매");
                                                 Console.WriteLine("1. 상점으로 돌아가기");
@@ -428,7 +483,7 @@ namespace solo_project
                                                 }
                                             }
                                         }
-                                        else if (weaponGold[weaponNum] > gold) 
+                                        else if (weaponGold[weaponNum] > players.Gold) 
                                         {
                                             Console.WriteLine("돈이 부족합니다");
                                             Console.WriteLine();
