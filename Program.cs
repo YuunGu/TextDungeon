@@ -389,7 +389,6 @@ namespace solo_project
                                                 else if (anw == "1")
                                                 {
                                                     break;
-                                                    break;
                                                 }
                                             }
                                             else if(armorHand[armorNum] == 1)
@@ -429,7 +428,6 @@ namespace solo_project
                                             else
                                             {
                                                 break;
-                                                break;
                                             }
                                         }
                                     }//아머 구매
@@ -461,7 +459,6 @@ namespace solo_project
                                                 else if (anw == "1")
                                                 {
                                                     break;
-                                                    break;
                                                 }
                                             }else if(weaponHand[weaponNum] == 1)
                                             {
@@ -479,7 +476,6 @@ namespace solo_project
                                                 }
                                                 else if (anw == "1")
                                                 {
-                                                    break;
                                                     break;
                                                 }
                                             }
@@ -499,7 +495,6 @@ namespace solo_project
                                             }
                                             else
                                             {
-                                                break;
                                                 break;
                                             }
 
